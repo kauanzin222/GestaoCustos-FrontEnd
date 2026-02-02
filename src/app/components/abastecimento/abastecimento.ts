@@ -24,7 +24,6 @@ export class Abastecimento {
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroupAbastecimento = this.formBuilder.group({
-      id: [''],
       posto: [''],
       date: [''],
       statusPay: [''],

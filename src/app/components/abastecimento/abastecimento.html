@@ -19,13 +19,13 @@
         <label class="col-sm-2 col-form-label">Status:</label>
         <div class="col-sm-4">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioDefault" id="radioPaid" [value]="1" formControlName="statusPay">
+                <input class="form-check-input" type="radio" id="radioPaid" [value]="true" formControlName="statusPay">
                 <label class="form-check-label" for="radioPaid">
                     Pago
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioDefault" id="radioOwing" [value]="0" formControlName="statusPay">
+                <input class="form-check-input" type="radio" id="radioOwing" [value]="false" formControlName="statusPay">
                 <label class="form-check-label" for="radioOwing">
                     Devendo
                 </label>
@@ -38,5 +38,5 @@
             </select>
         </div>
     </div>
-    <button class="btn bg-primary text-white" (click)="save()">Salvar</button>
+    <button type="button" class="btn bg-primary text-white" (click)="save()">Salvar</button>
 </form>
