@@ -1,33 +1,40 @@
-<app-abastecimento 
-    [postos]="postos"
-    [abastecimento]="abastecimento" 
-    (saveEmmiter)="saveAbastecimento()"
-></app-abastecimento>
+<app-abastecimento *ngIf="showForm" [postos]="postos" [abastecimento]="abastecimento"
+    (saveEmmiter)="saveAbastecimento()"></app-abastecimento>
 
-<p class="mt-3 h4 fw-bold text-white">Abastecimentos Registrados:</p>
+<div *ngIf="!showForm" class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="mt-3 h4 fw-bold text-black">Abastecimentos Registrados:</p>
+        </div>
+        <div class="col text-end pe-5 pt-1">
+            <i class="bi bi-plus-circle-fill" style="font-size: 2rem; color: #1E90FF; cursor: pointer;"
+                (click)="showForm=true"></i>
+        </div>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Data</th>
-            <th scope="col">Preço</th>
-            <th scope="col">Posto</th>
-            <th scope="col">Status</th>
-            <th scope="col">Opções</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let abastecimento of abastecimentos">
-            <th scope="row">{{abastecimento.id}}</th>
-            <td>{{abastecimento.date}}</td>
-            <td>{{abastecimento.price}}</td>
-            <td>{{abastecimento.posto?.name}}</td>
-            <td>{{abastecimento.statusPay}}</td>
-            <td>
-                <i class="bi bi-pencil p-1 me-2" style="font-size: 1.25rem; color: #1E90FF; cursor: pointer;"></i>
-                <i class="bi bi-trash-fill" style="font-size: 1.25rem; color: red; cursor: pointer;"></i>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table mt-2">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Data</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Posto</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end pe-4">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let abastecimento of abastecimentos">
+                <th scope="row">{{abastecimento.id}}</th>
+                <td>{{abastecimento.date}}</td>
+                <td>{{abastecimento.price}}</td>
+                <td>{{abastecimento.posto?.name}}</td>
+                <td>{{abastecimento.statusPay}}</td>
+                <td class="text-end">
+                    <i class="bi bi-pencil p-1 me-2" style="font-size: 1.25rem; color: #1E90FF; cursor: pointer;"></i>
+                    <i class="bi bi-trash-fill" style="font-size: 1.25rem; color: red; cursor: pointer;"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

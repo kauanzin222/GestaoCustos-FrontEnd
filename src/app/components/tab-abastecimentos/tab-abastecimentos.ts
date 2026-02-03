@@ -14,6 +14,9 @@ export class TabAbastecimentos {
 
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService
   ) { }
+
+  showForm: boolean = false;
+
   // Criando objetos vazios
   postos: PostoInterface[] = [];
   abastecimentos: AbastecimentoInterface[] = [];
@@ -39,4 +42,6 @@ export class TabAbastecimentos {
       }
     })
   }
+
+
 }
