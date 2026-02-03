@@ -33,6 +33,6 @@ export class Abastecimento {
 
   save() {
     Object.assign(this.abastecimento, this.formGroupAbastecimento.value);
-    this.saveEmmiter.emit();
+    this.saveEmmiter.emit(true);
   }
 }

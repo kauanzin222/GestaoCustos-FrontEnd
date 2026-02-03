@@ -26,13 +26,16 @@ export class TabAbastecimentos {
     this.loadPostos();
   }
 
-  saveAbastecimento() {
-    this.abastecimentoService.save(this.abastecimento).subscribe({
-      next: data => {
-        this.abastecimentos.push(data);
-        this.abastecimento = {} as AbastecimentoInterface;
-      }
-    })
+  saveAbastecimento(saveEmitter: boolean) {
+    if (saveEmitter) {
+      this.abastecimentoService.save(this.abastecimento).subscribe({
+        next: data => {
+          this.abastecimentos.push(data);
+        }
+      })
+    }
+
+    this.abastecimento = {} as AbastecimentoInterface;
   }
 
   loadPostos() {
@@ -43,5 +46,7 @@ export class TabAbastecimentos {
     })
   }
 
-
+  createForm() {
+    this.showForm = true;
+  }
 }

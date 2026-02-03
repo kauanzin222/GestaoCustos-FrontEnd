@@ -1,42 +1,51 @@
-<div class="fs-5 fw-bold">Formulário de Cadastro:</div>
-
-<form class="container bg-body-tertiary p-2" [formGroup]="formGroupAbastecimento">
-    <div class="mb-3 row">
-        <label for="inputDate" class="col-sm-2 col-form-label">Data:</label>
-        <div class="col-sm-3">
-            <input type="date" class="form-control" id="inputDate" formControlName="date">
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <div class="mt-3 h4 fw-bold text-black">Formulário de Cadastro</div>
         </div>
     </div>
 
-    <div class="mb-3 row">
-        <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
-        <div class="col-sm-3">
-            <input type="number" class="form-control" id="inputPrice" formControlName="price">
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label">Status:</label>
-        <div class="col-sm-4">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="radioPaid" [value]="true" formControlName="statusPay">
-                <label class="form-check-label" for="radioPaid">
-                    Pago
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="radioOwing" [value]="false" formControlName="statusPay">
-                <label class="form-check-label" for="radioOwing">
-                    Devendo
-                </label>
+    <hr>
+    <form class="container bg-body-tertiary p-2" [formGroup]="formGroupAbastecimento">
+        <div class="mb-3 row">
+            <label for="inputDate" class="col-sm-2 col-form-label">Data:</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="inputDate" formControlName="date">
             </div>
         </div>
-        <label class="col-sm-2 col-form-label">Posto:</label>
-        <div class="col-sm-4">
-            <select class="form-select" aria-label="Selecione um posto" formControlName="posto">
-                <option *ngFor="let posto of postos" [ngValue]="posto">{{posto.name}}</option>
-            </select>
+
+        <div class="mb-3 row">
+            <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="inputPrice" formControlName="price">
+            </div>
         </div>
-    </div>
-    <button type="button" class="btn bg-primary text-white" (click)="save()">Salvar</button>
-</form>
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Status:</label>
+            <div class="col-sm-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="radioPaid" [value]="true"
+                        formControlName="statusPay">
+                    <label class="form-check-label" for="radioPaid">
+                        Pago
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="radioOwing" [value]="false"
+                        formControlName="statusPay">
+                    <label class="form-check-label" for="radioOwing">
+                        Devendo
+                    </label>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label">Posto:</label>
+            <div class="col-sm-4">
+                <select class="form-select" aria-label="Selecione um posto" formControlName="posto">
+                    <option *ngFor="let posto of postos" [ngValue]="posto">{{posto.name}}</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="btn bg-primary text-white" (click)="save()">Salvar</button>
+    </form>
+</div>
