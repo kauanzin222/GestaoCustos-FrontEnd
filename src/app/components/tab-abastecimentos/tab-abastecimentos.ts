@@ -24,18 +24,29 @@ export class TabAbastecimentos {
 
   ngOnInit(): void {
     this.loadPostos();
+    this.loadAbastecimentos();
   }
 
+  loadAbastecimentos() {
+    this.abastecimentoService.getAbastecimento().subscribe({
+      next: data => {
+        this.abastecimentos = data;
+      }
+    })
+  }
+  
   saveAbastecimento(saveEmitter: boolean) {
     if (saveEmitter) {
       this.abastecimentoService.save(this.abastecimento).subscribe({
         next: data => {
           this.abastecimentos.push(data);
+          this.showForm = false;
         }
       })
     }
 
     this.abastecimento = {} as AbastecimentoInterface;
+    this.showForm = false;
   }
 
   loadPostos() {

@@ -29,10 +29,13 @@
                 <td>{{abastecimento.date}}</td>
                 <td>{{abastecimento.price}}</td>
                 <td>{{abastecimento.posto?.name}}</td>
-                <td>{{abastecimento.statusPay}}</td>
+                <td>
+                    <p *ngIf="abastecimento.statusPay">Pago</p>
+                    <p *ngIf="!abastecimento.statusPay">Devendo</p>
+                </td>
                 <td class="text-end">
                     <i class="bi bi-pencil p-1 me-2" style="font-size: 1.25rem; color: #1E90FF; cursor: pointer;"></i>
-                    <i class="bi bi-trash-fill" style="font-size: 1.25rem; color: red; cursor: pointer;"></i>
+                    <i class="bi bi-trash-fill me-3" style="font-size: 1.25rem; color: red; cursor: pointer;"></i>
                 </td>
             </tr>
         </tbody>

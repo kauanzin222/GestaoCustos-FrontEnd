@@ -11,7 +11,7 @@ export class AbastecimentoService {
   constructor(private http: HttpClient) { }
 
   getAbastecimento() {
-    return this.http.get<AbastecimentoInterface>("http://localhost:8080/Abastecimentos");
+    return this.http.get<AbastecimentoInterface[]>("http://localhost:8080/Abastecimentos");
   }
 
   save(abastecimento: AbastecimentoInterface) {
