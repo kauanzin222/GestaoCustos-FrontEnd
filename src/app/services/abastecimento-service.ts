@@ -17,4 +17,12 @@ export class AbastecimentoService {
   save(abastecimento: AbastecimentoInterface) {
     return this.http.post<AbastecimentoInterface>("http://localhost:8080/Abastecimentos", abastecimento);
   }
+
+  update(abastecimento: AbastecimentoInterface) {
+    return this.http.put<AbastecimentoInterface>(`http://localhost:8080/Abastecimentos/${abastecimento.id}`, abastecimento);
+  }
+
+  delete(abastecimento: AbastecimentoInterface) {
+    return this.http.delete<AbastecimentoInterface>(`http://localhost:8080/Abastecimentos/${abastecimento.id}`);
+  }
 }
