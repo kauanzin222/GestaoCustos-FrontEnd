@@ -24,14 +24,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let abastecimento of abastecimentos">
-                <th scope="row">{{abastecimento.id}}</th>
+            <tr *ngFor="let abastecimento of abastecimentos"
+                [ngClass]="abastecimento.statusPay ? 'table-success' : 'table-danger'">
+                <td scope="row">{{abastecimento.id}}</td>
                 <td>{{abastecimento.date}}</td>
                 <td>{{abastecimento.price}}</td>
                 <td>{{abastecimento.posto?.name}}</td>
                 <td>
-                    <p *ngIf="abastecimento.statusPay">Pago</p>
-                    <p *ngIf="!abastecimento.statusPay">Devendo</p>
+                    <p *ngIf="abastecimento.statusPay" class="text-success fw-bold">PAGO</p>
+                    <p *ngIf="!abastecimento.statusPay" class="text-danger fw-bold">DEVENDO</p>
                 </td>
                 <td class="text-end">
                     <i class="bi bi-pencil p-1 me-2" style="font-size: 1.25rem; color: #1E90FF; cursor: pointer;"></i>
