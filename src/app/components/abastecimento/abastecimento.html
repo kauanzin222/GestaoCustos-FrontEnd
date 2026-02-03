@@ -7,17 +7,23 @@
 
     <hr>
     <form class="container bg-body-tertiary p-2" [formGroup]="formGroupAbastecimento">
+        <div class="mb-3 row" *ngIf="isUpdate">
+            <label for="inputID" class="col-sm-2 col-form-label">ID:</label>
+            <div class="col-sm-1">
+                <input type="number" class="form-control bg-secondary-subtle border-secondary text-center ps-4" id="inputID" formControlName="id" readonly>
+            </div>
+        </div>
         <div class="mb-3 row">
             <label for="inputDate" class="col-sm-2 col-form-label">Data:</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="inputDate" formControlName="date">
+                <input type="date" class="form-control border-secondary" id="inputDate" formControlName="date">
             </div>
         </div>
 
         <div class="mb-3 row">
             <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputPrice" formControlName="price">
+                <input type="number" class="form-control border-secondary" id="inputPrice" formControlName="price">
             </div>
         </div>
 
@@ -41,7 +47,9 @@
             </div>
             <label class="col-sm-2 col-form-label">Posto:</label>
             <div class="col-sm-4">
-                <select class="form-select" aria-label="Selecione um posto" formControlName="posto">
+                <select class="form-select border-secondary" aria-label="Selecione um posto" formControlName="posto"
+                id="selectedPosto" name="posto"
+                 [compareWith]="selectedPosto">
                     <option *ngFor="let posto of postos" [ngValue]="posto">{{posto.name}}</option>
                 </select>
             </div>

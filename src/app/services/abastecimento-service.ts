@@ -11,18 +11,18 @@ export class AbastecimentoService {
   constructor(private http: HttpClient) { }
 
   getAbastecimento() {
-    return this.http.get<AbastecimentoInterface[]>("http://localhost:8080/Abastecimentos");
+    return this.http.get<AbastecimentoInterface[]>("http://localhost:8080/abastecimentos");
   }
 
   save(abastecimento: AbastecimentoInterface) {
-    return this.http.post<AbastecimentoInterface>("http://localhost:8080/Abastecimentos", abastecimento);
+    return this.http.post<AbastecimentoInterface>("http://localhost:8080/abastecimentos", abastecimento);
   }
 
   update(abastecimento: AbastecimentoInterface) {
-    return this.http.put<AbastecimentoInterface>(`http://localhost:8080/Abastecimentos/${abastecimento.id}`, abastecimento);
+    return this.http.put<AbastecimentoInterface>(`http://localhost:8080/abastecimentos/${abastecimento.id}`, abastecimento);
   }
 
   delete(abastecimento: AbastecimentoInterface) {
-    return this.http.delete<AbastecimentoInterface>(`http://localhost:8080/Abastecimentos/${abastecimento.id}`);
+    return this.http.delete<AbastecimentoInterface>(`http://localhost:8080/abastecimentos/${abastecimento.id}`);
   }
 }

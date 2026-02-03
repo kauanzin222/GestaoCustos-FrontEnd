@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -9,29 +9,35 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './abastecimento.html',
   styleUrl: './abastecimento.css',
 })
-export class Abastecimento {
+export class Abastecimento implements OnChanges {
   // Criando objetos vazios
   @Input()
   abastecimento: AbastecimentoInterface = {} as AbastecimentoInterface;
-  
+
   @Input()
   postos: PostoInterface[] = [];
 
   @Output()
   saveEmmiter = new EventEmitter();
 
-  @Output()
-  cancelEmitter = new EventEmitter();
+  @Input()
+  isUpdate?: boolean;
 
   formGroupAbastecimento: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroupAbastecimento = this.formBuilder.group({
+      id: { value: null, disabled: true },
       posto: [''],
       date: [''],
       statusPay: [''],
       price: ['']
     })
+  }
+
+  ngOnChanges(): void {
+    if (this.isUpdate)
+      this.formGroupAbastecimento.setValue(this.abastecimento);
   }
 
   save() {
@@ -40,6 +46,10 @@ export class Abastecimento {
   }
 
   cancel() {
-    this.cancelEmitter.emit();
+    this.saveEmmiter.emit(false);
+  }
+
+  selectedPosto(posto1: PostoInterface, posto2: PostoInterface) {
+    return posto1 && posto2 ? posto1.id === posto2.id : false;
   }
 }

@@ -9,6 +9,6 @@ export class PostoService {
   constructor(private http: HttpClient) { }
 
   getPostos() {
-    return this.http.get<PostoInterface[]>("http://localhost:8080/Postos");
+    return this.http.get<PostoInterface[]>("http://localhost:8080/postos");
   }
 }

@@ -15,6 +15,7 @@ export class TabAbastecimentos {
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService
   ) { }
 
+  isUpdate: boolean = false;
   showForm: boolean = false;
 
   // Criando objetos vazios
@@ -34,20 +35,7 @@ export class TabAbastecimentos {
       }
     })
   }
-  
-  saveAbastecimento(saveEmitter: boolean) {
-    if (saveEmitter) {
-      this.abastecimentoService.save(this.abastecimento).subscribe({
-        next: data => {
-          this.abastecimentos.push(data);
-          this.showForm = false;
-        }
-      })
-    }
 
-    this.abastecimento = {} as AbastecimentoInterface;
-    this.showForm = false;
-  }
 
   loadPostos() {
     this.postoService.getPostos().subscribe({
@@ -63,5 +51,38 @@ export class TabAbastecimentos {
 
   closeForm() {
     this.showForm = false;
+  }
+
+  saveAbastecimento(save: boolean) {
+    if (save)
+      if (this.isUpdate)
+        this.abastecimentoService.update(this.abastecimento).subscribe();
+      else {
+        this.abastecimentoService.save(this.abastecimento).subscribe({
+          next: data => {
+            this.abastecimentos.push(data);
+            this.showForm = false;
+          }
+        });
+      }
+
+
+    this.abastecimento = {} as AbastecimentoInterface;
+    this.showForm = false;
+    this.isUpdate = false;
+  }
+
+  updateAbastecimento(selectedAbastecimento: AbastecimentoInterface) {
+    this.showForm = true;
+    this.isUpdate = true;
+    this.abastecimento = selectedAbastecimento;
+  }
+
+  deleteAbastecimento(selectedAbastecimento: AbastecimentoInterface) {
+    this.abastecimentoService.delete(selectedAbastecimento).subscribe({
+      next: () => {
+        this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
+      }
+    })
   }
 }
