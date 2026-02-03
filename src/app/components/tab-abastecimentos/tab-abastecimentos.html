@@ -1,5 +1,6 @@
 <app-abastecimento *ngIf="showForm" [postos]="postos" [abastecimento]="abastecimento"
-    (saveEmmiter)="saveAbastecimento($event)"></app-abastecimento>
+    (saveEmmiter)="saveAbastecimento($event)"
+    (cancelEmitter)="closeForm()"></app-abastecimento>
 
 <div *ngIf="!showForm" class="container mt-3">
     <div class="row">

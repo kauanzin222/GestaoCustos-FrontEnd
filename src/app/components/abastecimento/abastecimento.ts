@@ -20,6 +20,9 @@ export class Abastecimento {
   @Output()
   saveEmmiter = new EventEmitter();
 
+  @Output()
+  cancelEmitter = new EventEmitter();
+
   formGroupAbastecimento: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -34,5 +37,9 @@ export class Abastecimento {
   save() {
     Object.assign(this.abastecimento, this.formGroupAbastecimento.value);
     this.saveEmmiter.emit(true);
+  }
+
+  cancel() {
+    this.cancelEmitter.emit();
   }
 }

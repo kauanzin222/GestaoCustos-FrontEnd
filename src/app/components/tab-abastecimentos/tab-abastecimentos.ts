@@ -56,8 +56,12 @@ export class TabAbastecimentos {
       }
     })
   }
-  
+
   createForm() {
     this.showForm = true;
+  }
+
+  closeForm() {
+    this.showForm = false;
   }
 }
