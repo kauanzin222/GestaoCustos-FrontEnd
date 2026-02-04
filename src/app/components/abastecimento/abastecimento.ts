@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { FormBuilder, FormGroup } from '@angular/forms';

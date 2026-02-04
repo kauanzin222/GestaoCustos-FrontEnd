@@ -9,26 +9,60 @@ import { PostoService } from '../../services/posto-service';
   styleUrl: './tab-posto.css',
 })
 export class TabPosto {
-  constructor(private postoService: PostoService) {}
-  
+  constructor(private postoService: PostoService) { }
+
+  showForm: boolean = false;
   isUpdate: boolean = false;
 
   // Criando objetos vazios
   posto: PostoInterface = {} as PostoInterface;
   postos: PostoInterface[] = [];
+  
+  ngOnInit(): void {
+    this.loadPostos();
+  }
+
+  loadPostos() {
+    this.postoService.getPostos().subscribe({
+      next: data => {
+        this.postos = data;
+      }
+    })
+  }
+
+  createForm() {
+    this.showForm = true;
+  }
 
   savePosto(save: boolean) {
-    if(save) {
-      this.postoService.save(this.posto).subscribe({
-        next: data => {
-          this.postos.push(data);
-        }
-      })
-    }
+    if (save)
+      if (this.isUpdate) {
+        this.postoService.update(this.posto).subscribe();
+      }
+      else {
+        this.postoService.save(this.posto).subscribe({
+          next: data => {
+            this.postos.push(data);
+          }
+        })
+      }
 
     this.posto = {} as PostoInterface;
     this.isUpdate = false;
+    this.showForm = false;
   }
 
+  updatePosto(selectedPosto: PostoInterface) {
+    this.posto = selectedPosto;
+    this.showForm = true;
+    this.isUpdate = true;
+  }
 
+  deletePosto(selectedPosto: PostoInterface) {
+    this.postoService.delete(selectedPosto).subscribe({
+      next: () => {
+        this.postos = this.postos.filter(posto => posto != selectedPosto);
+      }
+    });
+  }
 }

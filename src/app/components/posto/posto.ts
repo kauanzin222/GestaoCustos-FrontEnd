@@ -16,13 +16,15 @@ export class Posto implements OnChanges {
   @Input()
   postos: PostoInterface[] = [];
 
-  @Input() 
+  @Input()
   isUpdate?: boolean;
 
   @Output()
   saveEmitter = new EventEmitter();
 
   ngOnChanges(): void {
+    if (this.isUpdate)
+      this.formGroupPosto.setValue(this.posto);
   }
 
   formGroupPosto: FormGroup;
