@@ -7,7 +7,7 @@
 
     <hr>
     <form class="container bg-body-tertiary p-2" [formGroup]="formGroupPosto">
-        <div class="mb-3 row">
+        <div class="mb-3 row" *ngIf="isUpdate">
             <label for="inputID" class="col-sm-2 col-form-label">ID:</label>
             <div class="col-sm-1">
                 <input type="number" class="form-control bg-secondary-subtle border-secondary text-center ps-4"

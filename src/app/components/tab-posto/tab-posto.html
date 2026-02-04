@@ -1,2 +1,6 @@
 <p>tab-posto works!</p>
-<app-posto></app-posto>
+<app-posto
+(saveEmitter)="savePosto($event)"
+[posto]="posto"
+[postos]="postos"
+[isUpdate]="isUpdate"></app-posto>

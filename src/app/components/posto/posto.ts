@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,23 +16,30 @@ export class Posto implements OnChanges {
   @Input()
   postos: PostoInterface[] = [];
 
-  ngOnChanges(changes: SimpleChanges): void {
+  @Input() 
+  isUpdate?: boolean;
+
+  @Output()
+  saveEmitter = new EventEmitter();
+
+  ngOnChanges(): void {
   }
 
   formGroupPosto: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
-    this.formGroupPosto = formBuilder.group({
+    this.formGroupPosto = this.formBuilder.group({
       id: { value: null, disabled: true },
       name: ['']
     })
   };
 
   save() {
-
+    Object.assign(this.posto, this.formGroupPosto.value);
+    this.saveEmitter.emit(true);
   }
 
   cancel() {
-    
+    this.saveEmitter.emit(false);
   }
 }
