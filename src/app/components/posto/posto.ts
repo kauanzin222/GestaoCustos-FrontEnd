@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PostoInterface } from '../../interfaces/PostoInterface';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-posto',
@@ -32,7 +32,7 @@ export class Posto implements OnChanges {
   constructor(private formBuilder: FormBuilder) {
     this.formGroupPosto = this.formBuilder.group({
       id: { value: null, disabled: true },
-      name: ['']
+      name: ['', [Validators.required]]
     })
   };
 

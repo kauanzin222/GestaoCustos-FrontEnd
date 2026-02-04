@@ -3,6 +3,7 @@ import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface'
 import { AbastecimentoService } from '../../services/abastecimento-service';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tab-abastecimentos',
@@ -12,7 +13,7 @@ import { PostoService } from '../../services/posto-service';
 })
 export class TabAbastecimentos {
 
-  constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService
+  constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
 
   isUpdate: boolean = false;
@@ -20,6 +21,7 @@ export class TabAbastecimentos {
 
   // Criando objetos vazios
   postos: PostoInterface[] = [];
+  deleteSelected: AbastecimentoInterface = {} as AbastecimentoInterface
   abastecimentos: AbastecimentoInterface[] = [];
   abastecimento: AbastecimentoInterface = {} as AbastecimentoInterface;
 
@@ -76,12 +78,20 @@ export class TabAbastecimentos {
     this.abastecimento = selectedAbastecimento;
   }
 
-  deleteAbastecimento(selectedAbastecimento: AbastecimentoInterface) {
-    this.abastecimentoService.delete(selectedAbastecimento).subscribe({
-      next: () => {
-        this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
+  deleteAbastecimento(modal: any, selectedAbastecimento: AbastecimentoInterface) {
+    this.deleteSelected = selectedAbastecimento;
+    
+    this.modalService.open(modal).result.then(
+      (confirm) => {
+        if (confirm) {
+          this.abastecimentoService.delete(selectedAbastecimento).subscribe({
+            next: () => {
+              this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
+            }
+          })
+        }
       }
-    })
+    );
   }
 
   updateStatusPay(selectedAbastecimento: AbastecimentoInterface) {

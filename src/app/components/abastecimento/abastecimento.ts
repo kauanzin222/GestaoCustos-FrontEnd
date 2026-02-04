@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface';
 import { PostoInterface } from '../../interfaces/PostoInterface';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-abastecimento',
@@ -28,10 +28,10 @@ export class Abastecimento implements OnChanges {
   constructor(private formBuilder: FormBuilder) {
     this.formGroupAbastecimento = this.formBuilder.group({
       id: { value: null, disabled: true },
-      posto: [''],
-      date: [''],
-      statusPay: [''],
-      price: ['']
+      posto: ['', Validators.required],
+      date: ['', Validators.required],
+      statusPay: ['', Validators.required],
+      price: ['', Validators.required]
     })
   }
 
