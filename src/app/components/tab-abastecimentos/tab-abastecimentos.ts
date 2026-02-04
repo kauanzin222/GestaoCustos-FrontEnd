@@ -36,7 +36,6 @@ export class TabAbastecimentos {
     })
   }
 
-
   loadPostos() {
     this.postoService.getPostos().subscribe({
       next: data => {
@@ -66,7 +65,6 @@ export class TabAbastecimentos {
         });
       }
 
-
     this.abastecimento = {} as AbastecimentoInterface;
     this.showForm = false;
     this.isUpdate = false;
@@ -84,5 +82,13 @@ export class TabAbastecimentos {
         this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
       }
     })
+  }
+
+  updateStatusPay(selectedAbastecimento: AbastecimentoInterface) {
+    selectedAbastecimento.statusPay = true;
+    this.abastecimento = selectedAbastecimento;
+    this.isUpdate = true;
+
+    this.saveAbastecimento(true);
   }
 }
