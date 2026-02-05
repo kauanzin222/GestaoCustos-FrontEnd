@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { setDefaultAutoSelectFamilyAttemptTimeout } from 'net';
 
 @Component({
   selector: 'app-tab-posto',
@@ -14,6 +15,8 @@ export class TabPosto {
 
   showForm: boolean = false;
   isUpdate: boolean = false;
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
 
   // Criando objetos vazios
   posto: PostoInterface = {} as PostoInterface;
@@ -39,12 +42,20 @@ export class TabPosto {
   savePosto(save: boolean) {
     if (save)
       if (this.isUpdate) {
-        this.postoService.update(this.posto).subscribe();
+        this.postoService.update(this.posto).subscribe({
+          complete: () => {
+            this.successMessage = `Posto ${this.posto.name} atualizado com sucesso`;
+          }
+        });
       }
       else {
         this.postoService.save(this.posto).subscribe({
           next: data => {
             this.postos.push(data);
+          },
+          complete: () => {
+            
+            this.successMessage = `Posto cadastrado com sucesso`;
           }
         })
       }
@@ -69,6 +80,12 @@ export class TabPosto {
           this.postoService.delete(selectedPosto).subscribe({
             next: () => {
               this.postos = this.postos.filter(posto => posto != selectedPosto);
+            },
+            error: () => {
+              this.errorMessage = `Posto ${selectedPosto.name} contém abastecimentos registrados`;
+            },
+            complete: () => {
+              this.successMessage = `Posto ${selectedPosto.name} excluído com sucesso`;
             }
           });
         }

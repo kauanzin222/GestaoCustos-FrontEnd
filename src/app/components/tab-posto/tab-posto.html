@@ -34,7 +34,7 @@
         </tbody>
     </table>
 
- 
+    <!-- Modal de Exclusão -->
     <ng-template #confirmModal let-modal>
         <div class="modal-header bg-danger-subtle">
             <h5 class="modal-title text-danger"><i class="me-2 bi bi-exclamation-triangle-fill"></i>Remover Posto</h5>
@@ -50,4 +50,24 @@
             <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancelar</button>
         </div>
     </ng-template>
+
+    <!-- Alerta de Erro ao Excluir -->
+    <div *ngIf="errorMessage" class="row fixed-top mt-3">
+        <div class="col-4 offset-4">
+            <ngb-alert type="warning" class="shadow-lg" [animation]="true" (closed)="errorMessage=null">
+                <i class="bi bi-exclamation-triangle-fill"></i> {{this.errorMessage}}
+            </ngb-alert>
+        </div>
+    </div>
+
+    <!-- Alerta de Sucesso ao Excluir -->
+    <div *ngIf="successMessage" class="row fixed-top mt-3">
+        <div class="col-4 offset-4">
+            <ngb-alert type="success" class="shadow-lg" [animation]="true" (closed)="successMessage=null">
+                <i class="bi bi-check-circle-fill"></i> {{this.successMessage}}
+            </ngb-alert>
+        </div>
+    </div>
+
+
 </div>

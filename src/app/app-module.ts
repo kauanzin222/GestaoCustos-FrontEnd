@@ -10,7 +10,7 @@ import { TabAbastecimentos } from './components/tab-abastecimentos/tab-abastecim
 import { TabPosto } from './components/tab-posto/tab-posto';
 import { Posto } from './components/posto/posto';
 import { Header } from './components/header/header';
-import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -30,7 +30,8 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgbAlertModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
