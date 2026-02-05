@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tab-posto',
@@ -9,7 +10,7 @@ import { PostoService } from '../../services/posto-service';
   styleUrl: './tab-posto.css',
 })
 export class TabPosto {
-  constructor(private postoService: PostoService) { }
+  constructor(private postoService: PostoService, private modalService: NgbModal) { }
 
   showForm: boolean = false;
   isUpdate: boolean = false;
@@ -17,7 +18,8 @@ export class TabPosto {
   // Criando objetos vazios
   posto: PostoInterface = {} as PostoInterface;
   postos: PostoInterface[] = [];
-  
+  deleteSelected: PostoInterface = {} as PostoInterface;
+
   ngOnInit(): void {
     this.loadPostos();
   }
@@ -58,11 +60,19 @@ export class TabPosto {
     this.isUpdate = true;
   }
 
-  deletePosto(selectedPosto: PostoInterface) {
-    this.postoService.delete(selectedPosto).subscribe({
-      next: () => {
-        this.postos = this.postos.filter(posto => posto != selectedPosto);
+  deletePosto(modal: any, selectedPosto: PostoInterface) {
+    this.deleteSelected = selectedPosto;
+
+    this.modalService.open(modal).result.then(
+      (confirm) => {
+        if (confirm) {
+          this.postoService.delete(selectedPosto).subscribe({
+            next: () => {
+              this.postos = this.postos.filter(posto => posto != selectedPosto);
+            }
+          });
+        }
       }
-    });
+    )
   }
 }
