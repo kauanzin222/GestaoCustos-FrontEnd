@@ -51,7 +51,7 @@
         </div>
     </ng-template>
 
-    <!-- Alerta de Erro ao Excluir -->
+    <!-- Alerta de Erro -->
     <div *ngIf="errorMessage" class="row fixed-top mt-3">
         <div class="col-4 offset-4">
             <ngb-alert type="warning" class="shadow-lg" [animation]="true" (closed)="errorMessage=null">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <!-- Alerta de Sucesso ao Excluir -->
+    <!-- Alerta de Sucesso -->
     <div *ngIf="successMessage" class="row fixed-top mt-3">
         <div class="col-4 offset-4">
             <ngb-alert type="success" class="shadow-lg" [animation]="true" (closed)="successMessage=null">

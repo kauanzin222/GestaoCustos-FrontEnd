@@ -16,6 +16,8 @@ export class TabAbastecimentos {
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
 
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
   isUpdate: boolean = false;
   showForm: boolean = false;
 
@@ -57,12 +59,19 @@ export class TabAbastecimentos {
   saveAbastecimento(save: boolean) {
     if (save)
       if (this.isUpdate)
-        this.abastecimentoService.update(this.abastecimento).subscribe();
+        this.abastecimentoService.update(this.abastecimento).subscribe({
+          complete: () => {
+            this.successMessage = `Abastecimento atualizado com sucesso!`
+          }
+        });
       else {
         this.abastecimentoService.save(this.abastecimento).subscribe({
           next: data => {
             this.abastecimentos.push(data);
             this.showForm = false;
+          },
+          complete: () => {
+            this.successMessage = 'Abastecimento cadastrado com sucesso!'
           }
         });
       }
@@ -80,13 +89,16 @@ export class TabAbastecimentos {
 
   deleteAbastecimento(modal: any, selectedAbastecimento: AbastecimentoInterface) {
     this.deleteSelected = selectedAbastecimento;
-    
+
     this.modalService.open(modal).result.then(
       (confirm) => {
         if (confirm) {
           this.abastecimentoService.delete(selectedAbastecimento).subscribe({
             next: () => {
               this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
+            },
+            complete: () => {
+              this.successMessage = `Abastecimento #${selectedAbastecimento.id} excluído com sucesso!`
             }
           })
         }

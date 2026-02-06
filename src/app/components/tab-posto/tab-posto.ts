@@ -44,7 +44,7 @@ export class TabPosto {
       if (this.isUpdate) {
         this.postoService.update(this.posto).subscribe({
           complete: () => {
-            this.successMessage = `Posto ${this.posto.name} atualizado com sucesso`;
+            this.successMessage = `Posto ${this.posto.name} atualizado com sucesso!`;
           }
         });
       }
@@ -54,8 +54,7 @@ export class TabPosto {
             this.postos.push(data);
           },
           complete: () => {
-            
-            this.successMessage = `Posto cadastrado com sucesso`;
+            this.successMessage = `Posto cadastrado com sucesso!`;
           }
         })
       }
@@ -82,10 +81,10 @@ export class TabPosto {
               this.postos = this.postos.filter(posto => posto != selectedPosto);
             },
             error: () => {
-              this.errorMessage = `Posto ${selectedPosto.name} contém abastecimentos registrados`;
+              this.errorMessage = `Posto ${selectedPosto.name} contém abastecimentos registrados.`;
             },
             complete: () => {
-              this.successMessage = `Posto ${selectedPosto.name} excluído com sucesso`;
+              this.successMessage = `Posto ${selectedPosto.name} excluído com sucesso!`;
             }
           });
         }
