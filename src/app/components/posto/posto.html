@@ -7,6 +7,8 @@
 
     <hr>
     <form class="container bg-body-tertiary p-2" [formGroup]="formGroupPosto">
+
+        <!-- ID -->
         <div class="mb-3 row" *ngIf="isUpdate">
             <label for="inputID" class="col-sm-2 col-form-label">ID:</label>
             <div class="col-sm-1">
@@ -15,13 +17,20 @@
             </div>
         </div>
 
+        <!-- NAME -->
         <div class="mb-3 row">
             <label for="inputName" class="col-sm-2 col-form-label">Posto:</label>
             <div class="col-sm-3">
                 <input type="text" class="form-control border-secondary" id="inputName" formControlName="name">
+                <div *ngIf="submitted">
+                    <small *ngIf="pfgName?.errors?.['required']" class="form-text text-danger">*Nome do Posto é
+                        requirido!</small>
+                    <small *ngIf="pfgName?.errors?.['minLength']" class="form-text text-danger">*Nome do Posto deve ter no mínimo 5 caracteres!</small>
+                </div>
             </div>
         </div>
 
+        <!-- BUTTONS -->
         <div class="mt-4">
             <button type="button" class="btn bg-primary text-white me-2" (click)="save()">Salvar</button>
             <button type="button" class="btn bg-danger text-white" (click)="cancel()">Cancelar</button>

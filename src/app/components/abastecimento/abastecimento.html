@@ -7,26 +7,40 @@
 
     <hr>
     <form class="container bg-body-tertiary p-2" [formGroup]="formGroupAbastecimento">
+
+        <!-- ID -->
         <div class="mb-3 row" *ngIf="isUpdate">
             <label for="inputID" class="col-sm-2 col-form-label">ID:</label>
             <div class="col-sm-1">
-                <input type="number" class="form-control bg-secondary-subtle border-secondary text-center ps-4" id="inputID" formControlName="id" readonly>
+                <input type="number" class="form-control bg-secondary-subtle border-secondary text-center ps-4"
+                    id="inputID" formControlName="id" readonly>
+
             </div>
         </div>
+
+        <!-- DATE -->
         <div class="mb-3 row">
             <label for="inputDate" class="col-sm-2 col-form-label">Data:</label>
             <div class="col-sm-3">
                 <input type="date" class="form-control border-secondary" id="inputDate" formControlName="date">
+                <div *ngIf="submitted">
+                    <small *ngIf="afgDate?.errors?.['required']" class="form-text text-danger">*Data é requirida!</small>
+                </div>
             </div>
         </div>
 
+        <!-- PRICE -->
         <div class="mb-3 row">
             <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
             <div class="col-sm-3">
                 <input type="number" class="form-control border-secondary" id="inputPrice" formControlName="price">
+                <div *ngIf="submitted">
+                    <small *ngIf="afgPrice?.errors?.['required']" class="form-text text-danger">*Preço é requirido!</small>
+                </div>
             </div>
         </div>
 
+        <!-- STATUS -->
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Status:</label>
             <div class="col-sm-4">
@@ -44,16 +58,27 @@
                         Devendo
                     </label>
                 </div>
+                <div *ngIf="submitted">
+                    <small *ngIf="afgStatusPay?.errors?.['required']" class="form-text text-danger">*Status é
+                        requirido!</small>
+                </div>
             </div>
+
+            <!-- POSTO -->
             <label class="col-sm-2 col-form-label">Posto:</label>
             <div class="col-sm-4">
                 <select class="form-select border-secondary" aria-label="Selecione um posto" formControlName="posto"
-                id="selectedPosto" name="posto"
-                 [compareWith]="selectedPosto">
+                    id="selectedPosto" name="posto" [compareWith]="selectedPosto">
                     <option *ngFor="let posto of postos" [ngValue]="posto">{{posto.name}}</option>
                 </select>
+                <div *ngIf="submitted">
+                    <small *ngIf="afgPosto?.errors?.['required']" class="form-text text-danger">*Posto é
+                        requirido!</small>
+                </div>
             </div>
         </div>
+
+        <!-- BUTTONS -->
         <div class="mt-4">
             <button type="button" class="btn bg-primary text-white me-2" (click)="save()">Salvar</button>
             <button type="button" class="btn bg-danger text-white" (click)="cancel()">Cancelar</button>

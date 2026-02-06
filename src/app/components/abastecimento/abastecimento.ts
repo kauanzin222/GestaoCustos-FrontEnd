@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface';
 import { PostoInterface } from '../../interfaces/PostoInterface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupName, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-abastecimento',
@@ -24,14 +24,15 @@ export class Abastecimento implements OnChanges {
   isUpdate?: boolean;
 
   formGroupAbastecimento: FormGroup;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroupAbastecimento = this.formBuilder.group({
       id: { value: null, disabled: true },
-      posto: ['', Validators.required],
-      date: ['', Validators.required],
-      statusPay: ['', Validators.required],
-      price: ['', Validators.required]
+      posto: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      statusPay: ['', [Validators.required]],
+      price: ['', [Validators.required]]
     })
   }
 
@@ -41,8 +42,11 @@ export class Abastecimento implements OnChanges {
   }
 
   save() {
-    Object.assign(this.abastecimento, this.formGroupAbastecimento.value);
-    this.saveEmmiter.emit(true);
+    this.submitted = true;
+    if (this.formGroupAbastecimento.valid) {
+      Object.assign(this.abastecimento, this.formGroupAbastecimento.value);
+      this.saveEmmiter.emit(true);
+    }
   }
 
   cancel() {
@@ -52,4 +56,10 @@ export class Abastecimento implements OnChanges {
   selectedPosto(posto1: PostoInterface, posto2: PostoInterface) {
     return posto1 && posto2 ? posto1.id === posto2.id : false;
   }
+
+  // Validators
+  get afgPosto() {return this.formGroupAbastecimento.get("posto")};
+  get afgDate() {return this.formGroupAbastecimento.get("date")};
+  get afgStatusPay() {return this.formGroupAbastecimento.get("statusPay")};
+  get afgPrice() {return this.formGroupAbastecimento.get("price")};
 }

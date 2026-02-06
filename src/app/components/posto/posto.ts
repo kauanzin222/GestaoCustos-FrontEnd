@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './posto.css',
 })
 export class Posto implements OnChanges {
+  submitted: boolean = false;
+  
   // Construindo objetos vazios
   @Input()
   posto: PostoInterface = {} as PostoInterface;
@@ -32,16 +34,23 @@ export class Posto implements OnChanges {
   constructor(private formBuilder: FormBuilder) {
     this.formGroupPosto = this.formBuilder.group({
       id: { value: null, disabled: true },
-      name: ['', [Validators.required]]
+      name: ['', [Validators.required, Validators.minLength(5)]]
     })
   };
 
   save() {
-    Object.assign(this.posto, this.formGroupPosto.value);
-    this.saveEmitter.emit(true);
+    this.submitted = true;
+    if (this.formGroupPosto.valid) {
+      Object.assign(this.posto, this.formGroupPosto.value);
+      this.saveEmitter.emit(true);
+    }
   }
 
   cancel() {
     this.saveEmitter.emit(false);
   }
+
+  // Validators
+  get pfgName() { return this.formGroupPosto.get("name") };
+
 }
