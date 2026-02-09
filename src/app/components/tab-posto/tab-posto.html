@@ -52,22 +52,17 @@
     </ng-template>
 
     <!-- Alerta de Erro -->
-    <div *ngIf="errorMessage" class="row fixed-top mt-3">
-        <div class="col-4 offset-4">
-            <ngb-alert type="warning" class="shadow-lg" [animation]="true" (closed)="errorMessage=null">
-                <i class="bi bi-exclamation-triangle-fill"></i> {{this.errorMessage}}
-            </ngb-alert>
-        </div>
+    <div *ngIf="errorMessage" class="mt-3 fixed-top col-4 offset-4">
+        <ngb-alert type="warning" class="shadow-lg" [animation]="true" (closed)="errorMessage=null">
+            <i class="bi bi-exclamation-triangle-fill"></i> {{this.errorMessage}}
+        </ngb-alert>
     </div>
 
     <!-- Alerta de Sucesso -->
-    <div *ngIf="successMessage" class="row fixed-top mt-3">
-        <div class="col-4 offset-4">
-            <ngb-alert type="success" class="shadow-lg" [animation]="true" (closed)="successMessage=null">
-                <i class="bi bi-check-circle-fill"></i> {{this.successMessage}}
-            </ngb-alert>
-        </div>
+    <div *ngIf="successMessage" class="fixed-top mt-3 col-4 offset-4">
+        <ngb-alert type="success" class="shadow-lg" [animation]="true" (closed)="successMessage=null">
+            <i class="bi bi-check-circle-fill"></i> {{this.successMessage}}
+        </ngb-alert>
     </div>
-
 
 </div>

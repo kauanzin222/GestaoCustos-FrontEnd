@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AbastecimentoInterface } from '../../interfaces/AbastecimentoInterface';
 import { AbastecimentoService } from '../../services/abastecimento-service';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tab-abastecimentos',
@@ -12,12 +12,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './tab-abastecimentos.css',
 })
 export class TabAbastecimentos {
+  @ViewChild('myAlert', { static: false }) alert!: NgbAlert;
+
+  staticAlert: boolean = true;
 
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
 
+  // Variáveis de Alert
+  alertMessage: string | null = null;
+  typeAlert: string = "";
   errorMessage: string | null = null;
   successMessage: string | null = null;
+
   isUpdate: boolean = false;
   showForm: boolean = false;
 
@@ -71,7 +78,7 @@ export class TabAbastecimentos {
             this.showForm = false;
           },
           complete: () => {
-            this.successMessage = 'Abastecimento cadastrado com sucesso!'
+            this.showAlert('success', 'Abastecimento cadastrado com sucesso!');
           }
         });
       }
@@ -112,5 +119,11 @@ export class TabAbastecimentos {
     this.isUpdate = true;
 
     this.saveAbastecimento(true);
+  }
+
+  showAlert(type: string, message: string) {
+    this.alertMessage = message;
+    this.typeAlert = type;
+    setTimeout(() => this.alert.close(), 5000)
   }
 }
