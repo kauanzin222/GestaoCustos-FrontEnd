@@ -74,19 +74,12 @@
         </div>
     </ng-template>
 
-    <!-- Alerta de Erro -->
-    <div *ngIf="errorMessage" class="mt-3 fixed-top col-4 offset-4">
-        <ngb-alert #alertStatic type="warning" class="shadow-lg" [animation]="true" (closed)="errorMessage=null">
-            <i class="bi bi-exclamation-triangle-fill"></i> {{this.errorMessage}}
-        </ngb-alert>
-    </div>
-
     <!-- Alerta -->
     <ngb-alert 
     #myAlert *ngIf="alertMessage" 
     class="shadow-lg fixed-top mt-3 col-4 offset-4" 
     [animation]="true" [type]="typeAlert"
     (closed)="alertMessage=null">
-        <i class="bi bi-check-circle-fill"></i> {{this.alertMessage}}
+    <i [class]="iconAlert"></i> {{alertMessage}}
     </ngb-alert>
 </div>

@@ -4,6 +4,7 @@ import { AbastecimentoService } from '../../services/abastecimento-service';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { IconALert, TypeAlert } from '../../models/enums';
 
 @Component({
   selector: 'app-tab-abastecimentos',
@@ -19,11 +20,16 @@ export class TabAbastecimentos {
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
 
+  // Enums
+  typeAlertEnum = TypeAlert;
+  iconAlertEnum = IconALert;
+
+
   // Variáveis de Alert
   alertMessage: string | null = null;
-  typeAlert: string = "";
-  errorMessage: string | null = null;
-  successMessage: string | null = null;
+  iconAlert: string | null = null;
+  typeAlert: string = '';
+
 
   isUpdate: boolean = false;
   showForm: boolean = false;
@@ -68,7 +74,7 @@ export class TabAbastecimentos {
       if (this.isUpdate)
         this.abastecimentoService.update(this.abastecimento).subscribe({
           complete: () => {
-            this.successMessage = `Abastecimento atualizado com sucesso!`
+            this.showAlert(this.typeAlertEnum.success, "Abastecimento atualizado com sucesso", this.iconAlertEnum.success)
           }
         });
       else {
@@ -78,7 +84,7 @@ export class TabAbastecimentos {
             this.showForm = false;
           },
           complete: () => {
-            this.showAlert('success', 'Abastecimento cadastrado com sucesso!');
+            this.showAlert(this.typeAlertEnum.success, "Abastecimento cadastrado com sucesso!", this.iconAlertEnum.success);
           }
         });
       }
@@ -105,7 +111,7 @@ export class TabAbastecimentos {
               this.abastecimentos = this.abastecimentos.filter(abastecimento => abastecimento != selectedAbastecimento);
             },
             complete: () => {
-              this.successMessage = `Abastecimento #${selectedAbastecimento.id} excluído com sucesso!`
+              this.showAlert(this.typeAlertEnum.success, `Abastecimento #${selectedAbastecimento.id} excluído com sucesso!`, this.iconAlertEnum.success)
             }
           })
         }
@@ -121,9 +127,10 @@ export class TabAbastecimentos {
     this.saveAbastecimento(true);
   }
 
-  showAlert(type: string, message: string) {
+  showAlert(type: string, message: string, icon: string) {
     this.alertMessage = message;
     this.typeAlert = type;
+    this.iconAlert = icon;
     setTimeout(() => this.alert.close(), 5000)
   }
 }
