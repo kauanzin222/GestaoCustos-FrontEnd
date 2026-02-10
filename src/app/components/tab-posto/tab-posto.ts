@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PostoInterface } from '../../interfaces/PostoInterface';
 import { PostoService } from '../../services/posto-service';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { setDefaultAutoSelectFamilyAttemptTimeout } from 'net';
+import { IconALert, TypeAlert } from '../../models/enums';
 
 @Component({
   selector: 'app-tab-posto',
@@ -13,10 +14,19 @@ import { setDefaultAutoSelectFamilyAttemptTimeout } from 'net';
 export class TabPosto {
   constructor(private postoService: PostoService, private modalService: NgbModal) { }
 
+  @ViewChild('myAlert', { static: false }) alert!: NgbAlert;
+
+  // Enums
+  typeAlertEnum = TypeAlert;
+  iconAlertEnum = IconALert;
+
+  // Variáveis de Alert
+  alertMessage: string | null = null;
+  iconAlert: string | null = null;
+  typeAlert: string = '';
+
   showForm: boolean = false;
   isUpdate: boolean = false;
-  errorMessage: string | null = null;
-  successMessage: string | null = null;
 
   // Criando objetos vazios
   posto: PostoInterface = {} as PostoInterface;
@@ -44,7 +54,7 @@ export class TabPosto {
       if (this.isUpdate) {
         this.postoService.update(this.posto).subscribe({
           complete: () => {
-            this.successMessage = `Posto ${this.posto.name} atualizado com sucesso!`;
+            this.showAlert(this.typeAlertEnum.success, `Posto atualizado com sucesso!`, this.iconAlertEnum.success);
           }
         });
       }
@@ -54,7 +64,7 @@ export class TabPosto {
             this.postos.push(data);
           },
           complete: () => {
-            this.successMessage = `Posto cadastrado com sucesso!`;
+            this.showAlert(this.typeAlertEnum.success, `Posto cadastrado com sucesso!`, this.iconAlertEnum.success); 
           }
         })
       }
@@ -81,14 +91,21 @@ export class TabPosto {
               this.postos = this.postos.filter(posto => posto != selectedPosto);
             },
             error: () => {
-              this.errorMessage = `Posto ${selectedPosto.name} contém abastecimentos registrados.`;
+              this.showAlert(this.typeAlertEnum.warning, `Posto ${selectedPosto.name} contém abastecimentos registrados.`, this.iconAlertEnum.error);
             },
             complete: () => {
-              this.successMessage = `Posto ${selectedPosto.name} excluído com sucesso!`;
+              this.showAlert(this.typeAlertEnum.success, `Posto ${selectedPosto.name} excluído com sucesso!`, this.iconAlertEnum.error) 
             }
           });
         }
       }
     )
+  }
+
+  showAlert(type: string, message: string, icon: string) {
+    this.alertMessage = message;
+    this.typeAlert = type;
+    this.iconAlert = icon;
+    setTimeout(() => this.alert.close(), 5000)
   }
 }

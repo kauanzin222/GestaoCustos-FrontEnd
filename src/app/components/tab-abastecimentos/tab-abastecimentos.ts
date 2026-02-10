@@ -15,8 +15,6 @@ import { IconALert, TypeAlert } from '../../models/enums';
 export class TabAbastecimentos {
   @ViewChild('myAlert', { static: false }) alert!: NgbAlert;
 
-  staticAlert: boolean = true;
-
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
 
@@ -24,12 +22,10 @@ export class TabAbastecimentos {
   typeAlertEnum = TypeAlert;
   iconAlertEnum = IconALert;
 
-
   // Variáveis de Alert
   alertMessage: string | null = null;
   iconAlert: string | null = null;
   typeAlert: string = '';
-
 
   isUpdate: boolean = false;
   showForm: boolean = false;
