@@ -24,5 +24,5 @@ A aplicação conta com:
 ## Backend
 
 Este projeto é o front-end do sistema. O backend pode ser encontrado no link:
-[GestaoCustosPessoal-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)
+[GestaoCustos-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)
 
