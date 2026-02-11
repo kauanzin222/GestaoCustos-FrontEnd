@@ -13,10 +13,10 @@ import { IconALert, TypeAlert } from '../../models/enums';
   styleUrl: './tab-abastecimentos.css',
 })
 export class TabAbastecimentos {
-  @ViewChild('myAlert', { static: false }) alert!: NgbAlert;
-
   constructor(private abastecimentoService: AbastecimentoService, private postoService: PostoService, private modalService: NgbModal
   ) { }
+
+  @ViewChild('myAlert', { static: false }) alert!: NgbAlert;
 
   // Enums
   typeAlertEnum = TypeAlert;
