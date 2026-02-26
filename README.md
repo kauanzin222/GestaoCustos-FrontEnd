@@ -9,9 +9,9 @@ Este repositório contém a interface da aplicação de **Gestão de Custos Pess
 A construção deste Front-End serve como base de estudos aprofundados em **Angular**, onde destaco:
 
 - 🧱 **Componentização Avançada**: Criação de componentes modulares e reutilizáveis para garantir um código limpo e fácil de manter.
+- 🎨 **Estilização com Bootstrap**: Utilização do **Bootstrap** para garantir um design moderno, padronizado e agilidade no desenvolvimento de layouts responsivos.
 - 📡 **Consumo de API REST**: Integração eficiente com o Back-End em Java/Spring Boot para manipulação de dados em tempo real.
-- 🔄 **Reatividade e Estado**: Implementação de gerenciamento de estado e fluxos de dados reativos para uma experiência de usuário fluida.
-- 📱 **Design Responsivo**: Aplicação de técnicas de CSS e frameworks para garantir que a interface se adapte perfeitamente a qualquer dispositivo.
+- 🔄 **Reatividade e Estado**: Implementação de fluxos de dados reativos para uma experiência de usuário fluida.
 
 ## ✨ Funcionalidades e UI/UX
 
@@ -19,12 +19,12 @@ O sistema oferece uma interface rica para o gerenciamento de:
 
 - ⛽ **Gestão de Postos**: Interface intuitiva para cadastro e listagem de postos parceiros.
 - 🛣️ **Controle de Abastecimentos**: Registro detalhado e visual dos fluxos financeiros e consumos.
-- 🔔 **Feedback Visual**: Sistema de alertas (alerts) e modais para confirmações de ações críticas, garantindo segurança ao usuário.
+- 🔔 **Feedback Visual**: Uso de alertas e modais do Bootstrap para confirmações de ações críticas, garantindo segurança e clareza ao usuário.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Framework**: Angular (via Angular CLI)
-- **Estilização**: Foco em responsividade e design moderno.
+- **Framework**: Angular
+- **Design/UI**: Bootstrap
 - **Integração**: Consumo de APIs REST via Services.
 
 ## 🔗 Ecossistema
