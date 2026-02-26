@@ -1,40 +1,35 @@
-# 🚛 Gestão de Custos Pessoal - FrontEnd
+# 🚛 Gestão de Custos Pessoal - Projeto Front-End
 
-> **Interface moderna e intuitiva para o ecossistema de gestão logística.**
+![Status](https://img.shields.io/badge/Status-Em_Andamento-yellow)
 
-Este é o Front-End da aplicação de **Gestão de Custos Pessoais**. Desenvolvido com foco na experiência do usuário (UX), o projeto oferece uma interface dinâmica para o controle financeiro de operações de transporte.
+Este repositório contém a interface da aplicação de **Gestão de Custos Pessoais**, focada no controle financeiro de operações logísticas. Como futuro **Desenvolvedor Full-Stack**, desenvolvi este projeto com foco total em UX (User Experience) e em criar uma interface dinâmica e reativa para o usuário final.
 
----
+## 🚀 Principais Aprendizados e Foco Técnico
 
-## 🔗 Ecossistema
-Para o funcionamento correto dos dados, este Front-End deve estar conectado ao:  
-👉 **[GestaoCustos-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)**
+A construção deste Front-End serve como base de estudos aprofundados em **Angular**, onde destaco:
 
----
-
-## 📊 Status do Projeto
-![Status](https://img.shields.io/badge/Status-Andamento-yellow)
-
----
-## 🛠️ Tecnologias e Base
-
-O projeto foi gerado utilizando o **Angular CLI** e serve como base de estudos para:
-*   Componentização avançada.
-*   Consumo de APIs REST.
-*   Gerenciamento de estado e reatividade.
-
----
+- 🧱 **Componentização Avançada**: Criação de componentes modulares e reutilizáveis para garantir um código limpo e fácil de manter.
+- 📡 **Consumo de API REST**: Integração eficiente com o Back-End em Java/Spring Boot para manipulação de dados em tempo real.
+- 🔄 **Reatividade e Estado**: Implementação de gerenciamento de estado e fluxos de dados reativos para uma experiência de usuário fluida.
+- 📱 **Design Responsivo**: Aplicação de técnicas de CSS e frameworks para garantir que a interface se adapte perfeitamente a qualquer dispositivo.
 
 ## ✨ Funcionalidades e UI/UX
 
-### ⚙️ Gestão Atual
-*   **⛽ Postos:** Cadastro e listagem de postos parceiros.
-*   **🛣️ Abastecimentos:** Registro detalhado de fluxos financeiros.
+O sistema oferece uma interface rica para o gerenciamento de:
 
-### 🎨 Experiência do Usuário
-*   **📱 Responsividade:** Adaptado para diferentes tamanhos de tela.
-*   **🔔 Feedback Visual:** Sistema de alertas para sucesso e erro.
-*   **❓ Modais:** Confirmações de segurança em ações críticas.
-*   **🎨 Ícones:** Interface visual rica para facilitar a navegação.
+- ⛽ **Gestão de Postos**: Interface intuitiva para cadastro e listagem de postos parceiros.
+- 🛣️ **Controle de Abastecimentos**: Registro detalhado e visual dos fluxos financeiros e consumos.
+- 🔔 **Feedback Visual**: Sistema de alertas (alerts) e modais para confirmações de ações críticas, garantindo segurança ao usuário.
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework**: Angular (via Angular CLI)
+- **Estilização**: Foco em responsividade e design moderno.
+- **Integração**: Consumo de APIs REST via Services.
+
+## 🔗 Ecossistema
+Para o funcionamento completo do sistema e sincronização dos dados, este Front-End deve estar conectado ao:  
+👉 **[GestaoCustos-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)**
 
 ---
+*Projeto desenvolvido para fins de estudo e aperfeiçoamento técnico. 📚*
