@@ -1,28 +1,40 @@
-# GestaoCustosPessoalFrontEnd
+# 🚛 Gestão de Custos Pessoal - FrontEnd
 
-Este projeto é o front-end da aplicação de Gestão de Custos Pessoais. Ele foi gerado utilizando [Angular CLI](https://github.com/angular/angular-cli) versão 20.3.9.
+> **Interface moderna e intuitiva para o ecossistema de gestão logística.**
 
-## Sobre o Projeto
+Este é o Front-End da aplicação de **Gestão de Custos Pessoais**. Desenvolvido com foco na experiência do usuário (UX), o projeto oferece uma interface dinâmica para o controle financeiro de operações de transporte.
 
-Este aplicativo tem como objetivo a gestão de custos pessoais, com foco em um stakeholder de escritório de caminhoneiro.
-O projeto encontra-se em desenvolvimento e está sendo utilizado para aprendizado de conceitos, regras de negócio e melhores práticas.
+---
 
-### Funcionalidades
+## 🔗 Ecossistema
+Para o funcionamento correto dos dados, este Front-End deve estar conectado ao:  
+👉 **[GestaoCustos-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)**
 
-Atualmente é possível:
-*   Cadastrar Postos.
-*   Cadastrar Abastecimentos.
+---
 
-### Interface (UI/UX)
+## 📊 Status do Projeto
+![Status](https://img.shields.io/badge/Status-Andamento-yellow)
 
-A aplicação conta com:
-*   Responsividade.
-*   Alertas de sucesso e erro.
-*   Modal de confirmação.
-*   Ícones.
+---
+## 🛠️ Tecnologias e Base
 
-## Backend
+O projeto foi gerado utilizando o **Angular CLI** e serve como base de estudos para:
+*   Componentização avançada.
+*   Consumo de APIs REST.
+*   Gerenciamento de estado e reatividade.
 
-Este projeto é o front-end do sistema. O backend pode ser encontrado no link:
-[GestaoCustos-BackEnd](https://github.com/kauanzin222/GestaoCustos-BackEnd.git)
+---
 
+## ✨ Funcionalidades e UI/UX
+
+### ⚙️ Gestão Atual
+*   **⛽ Postos:** Cadastro e listagem de postos parceiros.
+*   **🛣️ Abastecimentos:** Registro detalhado de fluxos financeiros.
+
+### 🎨 Experiência do Usuário
+*   **📱 Responsividade:** Adaptado para diferentes tamanhos de tela.
+*   **🔔 Feedback Visual:** Sistema de alertas para sucesso e erro.
+*   **❓ Modais:** Confirmações de segurança em ações críticas.
+*   **🎨 Ícones:** Interface visual rica para facilitar a navegação.
+
+---
